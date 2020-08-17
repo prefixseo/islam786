@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_number": "694968468338",
+    "firebase_url": "https://islam786-a76c8.firebaseio.com",
+    "project_id": "islam786-a76c8",
+    "storage_bucket": "islam786-a76c8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:694968468338:android:72d334e1636b321304d3eb",
+        "android_client_info": {
+          "package_name": "com.hellodearcode.islam786"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "694968468338-jkvfu8iikfg5uo16487cf0u9d74t6akf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hellodearcode.islam786",
+            "certificate_hash": "5cb6fa578386bd37626a57b5942da39c567ddcf8"
+          }
+        },
+        {
+          "client_id": "694968468338-6kqamqqj901632u8mj5hdjn1046q36et.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hellodearcode.islam786",
+            "certificate_hash": "a65929078220f26535d0df1ae9314ba8ce11207b"
+          }
+        },
+        {
+          "client_id": "694968468338-h5b2lgqr1lq86uaj3bino4a1p8asc8ag.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDTAwFWd2672jYEryI07eDlFdDE0YD26dc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "694968468338-h5b2lgqr1lq86uaj3bino4a1p8asc8ag.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
