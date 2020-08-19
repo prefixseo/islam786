@@ -14,6 +14,7 @@ class _TasbihState extends State<Tasbih> {
   List<TasbihData> _future;
   TextEditingController _tName = TextEditingController();
   TextEditingController _tCount = TextEditingController();
+  final t_focus = FocusNode();
 
   @override
   void initState() {
@@ -186,17 +187,23 @@ class _TasbihState extends State<Tasbih> {
             child: Column(
               children: <Widget>[
                 TextField(
+                  textInputAction: TextInputAction.next,
+                  autofocus: true,
                   controller: _tName,
                   keyboardType: TextInputType.text,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     hintText: "E.g. Kalima tayyiba",
                     labelText: "Content"
-                  )
+                  ),
+                  onSubmitted: (v){
+                    FocusScope.of(context).requestFocus(t_focus);
+                  },
                 ),
                 SizedBox(height: 15.0,),
                 TextField(
                   controller: _tCount,
+                  focusNode: t_focus,
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
                       border: OutlineInputBorder(),
@@ -216,6 +223,8 @@ class _TasbihState extends State<Tasbih> {
                 if(_tName.value.text.isNotEmpty && _tCount.value.text.isNotEmpty) {
                   addTasbih(_tName.value.text, _tCount.value.text);
                   Navigator.of(context).pop();
+                }else{
+                  FocusScope.of(context).requestFocus(t_focus);
                 }
               },
               child: Text("Add"),
@@ -227,6 +236,8 @@ class _TasbihState extends State<Tasbih> {
                 if(_tName.value.text.isNotEmpty && _tCount.value.text.isNotEmpty) {
                   _updateTasbih(id,_tName.value.text, _tCount.value.text);
                   Navigator.of(context).pop();
+                }else{
+                  FocusScope.of(context).requestFocus(t_focus);
                 }
               },
               child: Text("Edit"),
