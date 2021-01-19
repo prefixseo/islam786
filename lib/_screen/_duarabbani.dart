@@ -50,7 +50,7 @@ class _DuaRabbaniState extends State<DuaRabbani> {
       ),
       body: Stack(
         children: <Widget>[
-          Image.asset("assets/icons/duaerabbani.jpg", fit: BoxFit.fill,height: MediaQuery.of(context).size.height,),
+          Image.asset("assets/icons/duaerabbani.jpg", fit: BoxFit.fill,width: MediaQuery.of(context).size.width,height: MediaQuery.of(context).size.height,),
           Container(
             color: Theme.of(context).primaryColor.withOpacity(0.7),
             height: MediaQuery.of(context).size.height,

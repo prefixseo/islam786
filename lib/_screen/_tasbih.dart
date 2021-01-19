@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:Islam786/_model/Tasbih.dart';
 import 'package:Islam786/_screen/_tasbihCounter.dart';
-import 'package:Islam786/_utils/_tasbihDatabase.dart';
 import 'package:Islam786/_utils/_tasbihHelper.dart';
 
 class Tasbih extends StatefulWidget {
@@ -107,7 +106,7 @@ class _TasbihState extends State<Tasbih> {
       resizeToAvoidBottomPadding: false,
       body: Stack(
         children: <Widget>[
-          Image.asset('assets/icons/tasbih.jpg',fit: BoxFit.fill,height: MediaQuery.of(context).size.height,),
+          Image.asset('assets/icons/tasbih.jpg',fit: BoxFit.fill,width: MediaQuery.of(context).size.width,height: MediaQuery.of(context).size.height,),
           Container(
             color: Theme.of(context).primaryColor.withOpacity(0.7),
             height: MediaQuery.of(context).size.height,

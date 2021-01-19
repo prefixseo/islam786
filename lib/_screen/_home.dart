@@ -26,12 +26,21 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-
-  static var _today = new HijriCalendar.now();
+  static var _today = new HijriCalendar.fromDate(getHijriDate());
   String hijriDate = _today.toFormat("MMMM dd yyyy");
   var _gridTextFontSize = 15.5;
   bool isOnline = false;
 
+
+  static DateTime getHijriDate(){
+    var _d = new DateTime.now();
+    // -- todo testing
+    if(_d.hour < 18){
+      return DateTime(_d.year,_d.month,_d.day-1);
+    }else{
+      return DateTime(_d.year,_d.month,_d.day);
+    }
+  }
 
   checkInternet(widget) async{
     var connectivityResult = await (Connectivity().checkConnectivity());
@@ -132,7 +141,7 @@ class _HomeState extends State<Home> {
       ),
       body: Stack(
         children: <Widget>[
-          Image.asset('assets/icons/home.jpg',fit: BoxFit.fill,height: MediaQuery.of(context).size.height,),
+          Image.asset('assets/icons/home.jpg',fit: BoxFit.fill,width: MediaQuery.of(context).size.width,height: MediaQuery.of(context).size.height,),
           Container(
             color: Theme.of(context).primaryColor.withOpacity(0.7),
             height: MediaQuery.of(context).size.height,

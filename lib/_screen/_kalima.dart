@@ -53,7 +53,7 @@ class _KalimaState extends State<Kalima> {
       ),
       body: Stack(
         children: <Widget>[
-          Image.asset("assets/icons/kalima.jpg", fit: BoxFit.fill,height: MediaQuery.of(context).size.height,),
+          Image.asset("assets/icons/kalima.jpg", fit: BoxFit.fill,width: MediaQuery.of(context).size.width,height: MediaQuery.of(context).size.height,),
           Container(
             color: Theme.of(context).primaryColor.withOpacity(0.7),
             height: MediaQuery.of(context).size.height,
