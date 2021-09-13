@@ -50,7 +50,7 @@ class PushNotificationService {
       _fmc.requestNotificationPermissions(IosNotificationSettings());
     }
 
-//    _fmc.getToken().then((value) => print(value));
+   // _fmc.getToken().then((value) => print(value));
 
     _fmc.configure(
       onMessage: (Map<String, dynamic> message){

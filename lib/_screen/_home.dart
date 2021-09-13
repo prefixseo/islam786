@@ -33,13 +33,8 @@ class _HomeState extends State<Home> {
 
 
   static DateTime getHijriDate(){
-    var _d = new DateTime.now();
-    // -- todo testing
-    if(_d.hour < 18){
-      return DateTime(_d.year,_d.month,_d.day-1);
-    }else{
-      return DateTime(_d.year,_d.month,_d.day);
-    }
+    var _d = new DateTime.now().add(Duration(days: -1));
+    return DateTime(_d.year,_d.month,_d.day);
   }
 
   checkInternet(widget) async{

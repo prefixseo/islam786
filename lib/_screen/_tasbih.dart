@@ -9,7 +9,6 @@ class Tasbih extends StatefulWidget {
 }
 
 class _TasbihState extends State<Tasbih> {
-
   List<TasbihData> _future;
   TextEditingController _tName = TextEditingController();
   TextEditingController _tCount = TextEditingController();
@@ -29,7 +28,7 @@ class _TasbihState extends State<Tasbih> {
     _tCount.clear();
   }
 
-  addTasbih(name,count) async {
+  addTasbih(name, count) async {
     await ActionServiceTasbih.AddTasbih(name, count);
     fetchTasbih();
   }
@@ -40,11 +39,11 @@ class _TasbihState extends State<Tasbih> {
       _tName.text = edit.name;
       _tCount.text = edit.count.toString();
     });
-    addTasbihAlertForm(context,true,id);
+    addTasbihAlertForm(context, true, id);
   }
 
-  _updateTasbih(id,name,count) async {
-    await ActionServiceTasbih.updateTasbih(id,name, count);
+  _updateTasbih(id, name, count) async {
+    await ActionServiceTasbih.updateTasbih(id, name, count);
     fetchTasbih();
   }
 
@@ -55,18 +54,21 @@ class _TasbihState extends State<Tasbih> {
   }
 
   //-- Confirm dialogue
-  showConfirmDialog(BuildContext context,id) {
-
+  showConfirmDialog(BuildContext context, id) {
     // set up the buttons
     Widget cancelButton = FlatButton(
-      child: Text("Cancel", style: TextStyle(color: Theme.of(context).primaryColor)),
-      onPressed:  () {
+      child: Text("Cancel",
+          style: TextStyle(color: Theme.of(context).primaryColor)),
+      onPressed: () {
         Navigator.pop(context);
       },
     );
     Widget continueButton = FlatButton(
-      child: Text("Delete", style: TextStyle(color: Theme.of(context).primaryColor),),
-      onPressed:  () {
+      child: Text(
+        "Delete",
+        style: TextStyle(color: Theme.of(context).primaryColor),
+      ),
+      onPressed: () {
         _removeTasbih(id);
       },
     );
@@ -103,148 +105,165 @@ class _TasbihState extends State<Tasbih> {
         onPressed: () => addTasbihAlertForm(context),
       ),
       resizeToAvoidBottomInset: false,
-      resizeToAvoidBottomPadding: false,
-      body: Stack(
-        children: <Widget>[
-          Image.asset('assets/icons/tasbih.jpg',fit: BoxFit.fill,width: MediaQuery.of(context).size.width,height: MediaQuery.of(context).size.height,),
-          Container(
-            color: Theme.of(context).primaryColor.withOpacity(0.7),
-            height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width,
-            child: Center(),
-          ),
-          Container(
-            child: (_future == null) ? CircularProgressIndicator()
-            : (_future.length == 0) ? Center(
-              child: Text(
-                "No Tasbih Added!",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 22.0,
-                  fontWeight: FontWeight.bold
-                ),
-              ),
-            ) : ListView.builder(
-              itemCount: _future.length,
-              itemBuilder: (context,i){
-                return GestureDetector(
-                  onTap: (){
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => TasbihCounter(id: _future[i].id,),
-                        )
-                    );
-                  },
-                  child: Container(
-                    padding: EdgeInsets.all(15.0),
-                    margin: EdgeInsets.symmetric(horizontal: 20.0,vertical: 5),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      border: Border.all(color: Theme.of(context).primaryColor,width: 1),
-                      borderRadius: BorderRadius.circular(10.0)
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Expanded(child: Text(_future[i].name,overflow: TextOverflow.ellipsis, style: TextStyle(fontSize: 18.0),)),
-                        Row(
-                          children: <Widget>[
-                            IconButton(
-                              icon: Icon(Icons.edit,color: Theme.of(context).primaryColor),
-                              color: Colors.transparent,
-                              onPressed: () => _editTasbih(_future[i].id),
+      body: Stack(children: <Widget>[
+        Image.asset(
+          'assets/icons/tasbih.jpg',
+          fit: BoxFit.fill,
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+        ),
+        Container(
+          color: Theme.of(context).primaryColor.withOpacity(0.7),
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          child: Center(),
+        ),
+        Container(
+            child: (_future == null)
+                ? CircularProgressIndicator()
+                : (_future.length == 0)
+                    ? Center(
+                        child: Text(
+                          "No Tasbih Added!",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 22.0,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      )
+                    : ListView.builder(
+                        itemCount: _future.length,
+                        itemBuilder: (context, i) {
+                          return GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => TasbihCounter(
+                                      id: _future[i].id,
+                                    ),
+                                  ));
+                            },
+                            child: Container(
+                              padding: EdgeInsets.all(15.0),
+                              margin: EdgeInsets.symmetric(
+                                  horizontal: 20.0, vertical: 5),
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  border: Border.all(
+                                      color: Theme.of(context).primaryColor,
+                                      width: 1),
+                                  borderRadius: BorderRadius.circular(10.0)),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: <Widget>[
+                                  Expanded(
+                                      child: Text(
+                                    _future[i].name,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: TextStyle(fontSize: 18.0),
+                                  )),
+                                  Row(
+                                    children: <Widget>[
+                                      IconButton(
+                                        icon: Icon(Icons.edit,
+                                            color:
+                                                Theme.of(context).primaryColor),
+                                        color: Colors.transparent,
+                                        onPressed: () =>
+                                            _editTasbih(_future[i].id),
+                                      ),
+                                      IconButton(
+                                        icon: Icon(
+                                          Icons.delete_outline,
+                                          color: Theme.of(context).primaryColor,
+                                        ),
+                                        color: Colors.transparent,
+                                        onPressed: () => showConfirmDialog(
+                                            context, _future[i].id),
+                                      ),
+                                    ],
+                                  )
+                                ],
+                              ),
                             ),
-                            IconButton(
-                              icon: Icon(Icons.delete_outline,color: Theme.of(context).primaryColor,),
-                              color: Colors.transparent,
-                              onPressed: () => showConfirmDialog(context,_future[i].id),
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
-                );
-              },
-            )
-          ),
-        ]
-      ),
+                          );
+                        },
+                      )),
+      ]),
     );
   }
 
-  addTasbihAlertForm(BuildContext context,[edit = false,id = 0]){
+  addTasbihAlertForm(BuildContext context, [edit = false, id = 0]) {
     return showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (context){
-        return AlertDialog(
-          title: (edit) ? Text("Edit Tasbih") : Text("Add Tasbih"),
-          content: Container(
-            height: 140.0,
-            child: Column(
-              children: <Widget>[
-                TextField(
-                  textInputAction: TextInputAction.next,
-                  autofocus: true,
-                  controller: _tName,
-                  keyboardType: TextInputType.text,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    hintText: "E.g. Kalima tayyiba",
-                    labelText: "Content"
+        context: context,
+        barrierDismissible: false,
+        builder: (context) {
+          return AlertDialog(
+            title: (edit) ? Text("Edit Tasbih") : Text("Add Tasbih"),
+            content: Container(
+              height: 140.0,
+              child: Column(
+                children: <Widget>[
+                  TextField(
+                    textInputAction: TextInputAction.next,
+                    autofocus: true,
+                    controller: _tName,
+                    keyboardType: TextInputType.text,
+                    decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        hintText: "E.g. Kalima tayyiba",
+                        labelText: "Content"),
+                    onSubmitted: (v) {
+                      FocusScope.of(context).requestFocus(t_focus);
+                    },
                   ),
-                  onSubmitted: (v){
-                    FocusScope.of(context).requestFocus(t_focus);
-                  },
-                ),
-                SizedBox(height: 15.0,),
-                TextField(
-                  controller: _tCount,
-                  focusNode: t_focus,
-                  keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      hintText: "E.g. 33",
-                      labelText: "Count"
-                  )
-                ),
-              ],
+                  SizedBox(
+                    height: 15.0,
+                  ),
+                  TextField(
+                      controller: _tCount,
+                      focusNode: t_focus,
+                      keyboardType: TextInputType.number,
+                      decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          hintText: "E.g. 33",
+                          labelText: "Count")),
+                ],
+              ),
             ),
-          ),
-          actions: <Widget>[
-            (!edit)
-                ?
-            MaterialButton(
-              color: Theme.of(context).primaryColor,
-              onPressed: () {
-                if(_tName.value.text.isNotEmpty && _tCount.value.text.isNotEmpty) {
-                  addTasbih(_tName.value.text, _tCount.value.text);
-                  Navigator.of(context).pop();
-                }else{
-                  FocusScope.of(context).requestFocus(t_focus);
-                }
-              },
-              child: Text("Add"),
-            )
-              :
-            MaterialButton(
-              color: Theme.of(context).primaryColor,
-              onPressed: () {
-                if(_tName.value.text.isNotEmpty && _tCount.value.text.isNotEmpty) {
-                  _updateTasbih(id,_tName.value.text, _tCount.value.text);
-                  Navigator.of(context).pop();
-                }else{
-                  FocusScope.of(context).requestFocus(t_focus);
-                }
-              },
-              child: Text("Edit"),
-            )
-          ],
-        );
-      }
-    );
+            actions: <Widget>[
+              (!edit)
+                  ? MaterialButton(
+                      color: Theme.of(context).primaryColor,
+                      onPressed: () {
+                        if (_tName.value.text.isNotEmpty &&
+                            _tCount.value.text.isNotEmpty) {
+                          addTasbih(_tName.value.text, _tCount.value.text);
+                          Navigator.of(context).pop();
+                        } else {
+                          FocusScope.of(context).requestFocus(t_focus);
+                        }
+                      },
+                      child: Text("Add", style: TextStyle(color: Colors.white),),
+                    )
+                  : MaterialButton(
+                      color: Theme.of(context).primaryColor,
+                      onPressed: () {
+                        if (_tName.value.text.isNotEmpty &&
+                            _tCount.value.text.isNotEmpty) {
+                          _updateTasbih(
+                              id, _tName.value.text, _tCount.value.text);
+                          Navigator.of(context).pop();
+                        } else {
+                          FocusScope.of(context).requestFocus(t_focus);
+                        }
+                      },
+                      child: Text("Edit"),
+                    )
+            ],
+          );
+        });
   }
-
 }
